@@ -49,6 +49,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mode, setMode] = useState("light")
+  const [isOpen, setIsOpen] = useState(false);
 
   const apiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string;
 
@@ -148,16 +149,16 @@ export default function Home() {
           <Image src="/logo.svg" alt="LinguaLibre logomark" width={60} height={60} />
           <h1 className="text-[28px] font-medium">LinguaLibre</h1>
         </div>
-        <button className={mode ==="light" ?"bg-black p-3 rounded-2xl text-[22px] font-medium text-white lg:hidden flex items-center gap-2.5" :" bg-white text-black p-3 rounded-2xl text-[22px] font-medium lg:hidden flex items-center gap-2.5" }>
+        <button onClick={() =>setIsOpen(true)} className={mode ==="light" ?"bg-black p-3 rounded-2xl text-[22px] font-medium text-white lg:hidden flex items-center gap-2.5" :" bg-white text-black p-3 rounded-2xl text-[22px] font-medium lg:hidden flex items-center gap-2.5" }>
           <Settings />
         </button>
-        <DropdownMenu>
+        <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
           <DropdownMenuTrigger asChild>
             <button className={mode ==="light" ? "bg-black p-3 rounded-2xl text-[22px] font-medium text-white hidden lg:flex items-center gap-2.5 cursor-pointer" :" bg-white text-black p-3 rounded-2xl text-[22px] font-medium hidden lg:flex items-center gap-2.5 cursor-pointer" }>
               Settings <Settings />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
+          <DropdownMenuContent className="w-56 right-0">
             <DropdownMenuLabel>Appearance</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuRadioGroup value={mode} onValueChange={setMode}>
