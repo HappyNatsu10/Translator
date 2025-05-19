@@ -254,7 +254,7 @@ export default function Home() {
                 <p className="text-gray-600 text-sm mb-1">
                   {item.sourceLang} → {item.targetLang}
                 </p>
-                <p className="font-medium">"{item.sourceText}"</p>
+                <p className="font-medium">&quot;{item.sourceText}&quot;</p>
                 <p className="text-green-700 mt-1">→ {item.translatedText}</p>
               </div>
               <div className="flex gap-3">
